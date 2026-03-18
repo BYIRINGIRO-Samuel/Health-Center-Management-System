@@ -22,6 +22,8 @@ public class User {
     @Column(nullable = false)
     private String role; // Admin, Doctor, Receptionist, Patient
 
+    private String phone;
+
     public User() {
     }
 
@@ -30,6 +32,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String fullName, String email, String password, String role, String phone) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.phone = phone;
     }
 
     // Getters and Setters
@@ -43,4 +53,6 @@ public class User {
     public void setPassword(String password) { this.password = password; }
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 }
