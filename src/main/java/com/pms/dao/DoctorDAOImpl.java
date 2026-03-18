@@ -6,11 +6,11 @@ import com.pms.model.Prescription;
 import com.pms.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import com.pms.util.HibernateUtil;
 import java.util.List;
 
 public class DoctorDAOImpl implements DoctorDAO {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("pms-persistence");
+    private EntityManagerFactory emf = HibernateUtil.getEntityManagerFactory();
 
     @Override
     public List<Appointment> getAppointmentsForDoctor(Long doctorId) {
