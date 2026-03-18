@@ -1,7 +1,7 @@
 package com.pms.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "appointments")
@@ -18,7 +18,7 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     private User doctor;
 
-    private LocalDateTime dateTime;
+    private java.util.Date appointmentDate;
     private String status; // Pending, Confirmed, Completed, Cancelled
     private String reason;
 
@@ -33,8 +33,8 @@ public class Appointment {
     public User getDoctor() { return doctor; }
     public void setDoctor(User doctor) { this.doctor = doctor; }
 
-    public LocalDateTime getDateTime() { return dateTime; }
-    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+    public java.util.Date getAppointmentDate() { return appointmentDate; }
+    public void setAppointmentDate(java.util.Date appointmentDate) { this.appointmentDate = appointmentDate; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
