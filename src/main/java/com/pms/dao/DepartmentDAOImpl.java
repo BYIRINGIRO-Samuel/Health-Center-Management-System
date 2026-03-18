@@ -4,14 +4,14 @@ import com.pms.model.Department;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import com.pms.util.HibernateUtil;
 import java.util.List;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-    private EntityManagerFactory emf;
+    private EntityManagerFactory emf = HibernateUtil.getEntityManagerFactory();
 
     public DepartmentDAOImpl() {
-        emf = Persistence.createEntityManagerFactory("pmsPU");
     }
 
     @Override
