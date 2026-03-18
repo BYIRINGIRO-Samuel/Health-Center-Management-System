@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+    <persistence-unit name="pmsPU">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.pms.model.User</class>
+        <properties>
+            <!-- H2 Database File-based config to persist between restarts -> stored as lms-db.mv.db in user home dir or current dir -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:./pms-db;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE" />
+            <property name="jakarta.persistence.jdbc.user" value="sa" />
+            <property name="jakarta.persistence.jdbc.password" value="" />
+            
+            <!-- Hibernate Properties -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+            
+            <!-- Auto-create tables -->
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            
+            <!-- Print SQL to stdout -->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>
