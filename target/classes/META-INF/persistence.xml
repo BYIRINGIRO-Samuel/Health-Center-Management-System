@@ -10,6 +10,7 @@
         <class>com.pms.model.Appointment</class>
         <class>com.pms.model.MedicalRecord</class>
         <class>com.pms.model.Prescription</class>
+        <class>com.pms.model.Billing</class>
         
         <properties>
             <!-- H2 Database File-based config -->
