@@ -92,7 +92,16 @@
                                 <td>Consultation with Dr. <%= b.getAppointment().getDoctor().getFullName() %></td>
                                 <td>$<%= String.format("%.2f", b.getAmount()) %></td>
                                 <td><%= b.getPaymentMethod() != null ? b.getPaymentMethod() : "N/A" %></td>
-                                <td><span class="role-badge badge-<%= b.getStatus() %>"><%= b.getStatus() %></span></td>
+                                <td>
+                                    <% if ("Pending".equals(b.getStatus())) { %>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <span class="role-badge badge-Pending"><%= b.getStatus() %></span>
+                                            <a href="PatientServlet?action=payForm&billingId=<%= b.getId() %>" class="btn-sm btn-solid-teal" style="text-decoration: none;">Pay Now</a>
+                                        </div>
+                                    <% } else { %>
+                                        <span class="role-badge badge-<%= b.getStatus() %>"><%= b.getStatus() %></span>
+                                    <% } %>
+                                </td>
                             </tr>
                             <%
                                     }
