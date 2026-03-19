@@ -17,7 +17,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -81,12 +80,17 @@ public class PatientServlet extends HttpServlet {
                 break;
             case "notifications":
                 java.util.List<com.pms.model.NotificationItem> notifs = new java.util.ArrayList<>();
+                java.util.Date lastCheck = patient.getLastNotifCheck();
+                if (lastCheck == null) lastCheck = new java.util.Date(0);
+
                 for(com.pms.model.Appointment a : patientDAO.getAppointmentsByPatientId(patient.getId())) {
-                    notifs.add(new com.pms.model.NotificationItem("appointment", "Appointment " + a.getStatus(), "Appointment with " + a.getDoctor().getFullName(), a.getAppointmentDate(), true, "Appointment", "#dbeafe", "#1e40af"));
+                    boolean unread = a.getCreatedAt() != null && a.getCreatedAt().after(lastCheck);
+                    notifs.add(new com.pms.model.NotificationItem("appointment", "Appointment " + a.getStatus(), "Appointment with " + a.getDoctor().getFullName(), a.getAppointmentDate(), unread, "Appointment", "#dbeafe", "#1e40af"));
                 }
                 for(com.pms.model.Billing b : patientDAO.getBillingsByPatientId(patient.getId())) {
                     if("Pending".equals(b.getStatus())) {
-                        notifs.add(new com.pms.model.NotificationItem("payment", "Pending Payment", "You have a pending payment of $" + b.getAmount(), b.getBillingDate(), true, "Payment", "#dcfce7", "#15803d"));
+                        boolean unread = b.getBillingDate() != null && b.getBillingDate().after(lastCheck);
+                        notifs.add(new com.pms.model.NotificationItem("payment", "Pending Payment", "You have a pending payment of $" + b.getAmount(), b.getBillingDate(), unread, "Payment", "#dcfce7", "#15803d"));
                     }
                 }
                 request.setAttribute("notificationsList", notifs);
@@ -177,7 +181,8 @@ public class PatientServlet extends HttpServlet {
         String reason = request.getParameter("reason");
 
         try {
-            Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(dateStr);
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            Date appointmentDate = sdf.parse(dateStr);
             Appointment appointment = new Appointment();
             appointment.setPatient(patient);
             appointment.setDoctor(userDAO.getUserById(doctorId));
