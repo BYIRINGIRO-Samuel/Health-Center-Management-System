@@ -93,10 +93,10 @@
                     </div>
 
                     <div class="notif-list" id="notifList">
-                        <%@ page import="java.util.List, com.pms.model.NotificationItem, java.text.SimpleDateFormat" %>
+                        <%@ page import="java.util.List, com.pms.model.NotificationItem" %>
                         <%
                             List<NotificationItem> notifList = (List<NotificationItem>) request.getAttribute("notificationsList");
-                            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy 'at' hh:mm a");
+                            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM dd, yyyy 'at' hh:mm a");
                             if (notifList != null && !notifList.isEmpty()) {
                                 for(NotificationItem notif : notifList) {
                                     String iconHtml = "";
@@ -159,14 +159,20 @@
         });
     }
     function markAllRead() {
-        document.querySelectorAll('.notif-item.unread').forEach(function(item) {
-            item.classList.remove('unread');
-            var dot = item.querySelector('.notif-unread-dot');
-            if (dot) dot.remove();
-        });
-        // Update badge
-        var badge = document.getElementById('notifBadge');
-        if (badge) { badge.textContent = '0'; badge.style.display = 'none'; }
+        fetch('NotificationActionServlet?action=markAllRead')
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    document.querySelectorAll('.notif-item.unread').forEach(function(item) {
+                        item.classList.remove('unread');
+                        var dot = item.querySelector('.notif-unread-dot');
+                        if (dot) dot.remove();
+                    });
+                    // Update badge
+                    var badge = document.getElementById('notifBadge');
+                    if (badge) { badge.textContent = '0'; badge.style.display = 'none'; }
+                }
+            });
     }
     </script>
 </body>
