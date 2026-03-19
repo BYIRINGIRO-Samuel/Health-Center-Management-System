@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -44,8 +45,16 @@ public class ReceptionistServlet extends HttpServlet {
             case "billings":
                 listBillings(request, response);
                 break;
+            case "billingForm":
+                request.getRequestDispatcher("receptionist-billing.jsp").forward(request, response);
+                break;
             case "bookForm":
                 showBookingForm(request, response);
+                break;
+            case "paymentForm":
+                Long bidParam = Long.parseLong(request.getParameter("billingId"));
+                request.setAttribute("billing", receptionistDAO.getBillingById(bidParam));
+                request.getRequestDispatcher("receptionist-payment.jsp").forward(request, response);
                 break;
             default:
                 response.sendRedirect("receptionist-dashboard.jsp");
@@ -121,10 +130,20 @@ public class ReceptionistServlet extends HttpServlet {
     private void bookAppointment(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long pid = Long.parseLong(request.getParameter("patientId"));
         Long did = Long.parseLong(request.getParameter("doctorId"));
+        String dateStr = request.getParameter("appointmentDate");
+        
         Appointment appointment = new Appointment();
         appointment.setPatient(userDAO.getUserById(pid));
         appointment.setDoctor(userDAO.getUserById(did));
-        appointment.setAppointmentDate(new Date()); // Simple for now
+        
+        try {
+            // Updated to parse datetime-local from form
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            appointment.setAppointmentDate(sdf.parse(dateStr));
+        } catch (Exception e) {
+            appointment.setAppointmentDate(new java.util.Date()); // Fallback
+        }
+        
         appointment.setStatus("Scheduled");
         receptionistDAO.bookAppointment(appointment);
         response.sendRedirect("ReceptionistServlet?action=appointments");
@@ -156,7 +175,10 @@ public class ReceptionistServlet extends HttpServlet {
     private void updateBillingStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long bid = Long.parseLong(request.getParameter("billingId"));
         String status = request.getParameter("status");
-        receptionistDAO.updateBillingStatus(bid, status);
-        response.sendRedirect("ReceptionistServlet?action=billings");
+        String method = request.getParameter("paymentMethod");
+        if (method == null) method = "N/A";
+        
+        receptionistDAO.recordPayment(bid, method, status);
+        response.sendRedirect("ReceptionistServlet?action=billings&status=updated");
     }
 }
