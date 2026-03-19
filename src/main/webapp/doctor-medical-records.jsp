@@ -7,17 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Records | Doctor Portal</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
-    <jsp:include page="components/sidebar.jsp" />
+    <div class="dashboard-layout">
+        <jsp:include page="components/sidebar.jsp" />
     
-    <main class="main-content">
-        <header class="content-header">
-            <div>
+        <main class="main-content">
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
                 <h1>Medical Records</h1>
-                <p>Global history of clinical records created by you.</p>
+                <p class="text-muted">Global history of clinical records created by you.</p>
             </div>
-        </header>
 
         <section class="records-section container-fluid">
             <div class="card shadow-sm border-0">
@@ -66,6 +69,8 @@
                 </div>
             </div>
         </section>
-    </main>
+            </div><!-- /.main-inner-content -->
+        </main>
+    </div>
 </body>
 </html>
