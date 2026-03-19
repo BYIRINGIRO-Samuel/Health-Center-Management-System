@@ -16,4 +16,5 @@ public interface PatientDAO {
     void updateProfile(User user);
     User getPatientById(Long id);
     List<User> getAllDoctors();
+    void payBilling(Long billingId, String paymentMethod);
 }
