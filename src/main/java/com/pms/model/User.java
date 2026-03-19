@@ -1,6 +1,7 @@
 package com.pms.model;
 
 import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -21,8 +22,19 @@ public class User {
 
     @Column(nullable = false)
     private String role; // Admin, Doctor, Receptionist, Patient
-
     private String phone;
+    
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+    
+    private java.util.Date lastNotifCheck;
+    private java.util.Date createdAt = new java.util.Date();
+
+    public java.util.Date getLastNotifCheck() { return lastNotifCheck; }
+    public void setLastNotifCheck(java.util.Date lastNotifCheck) { this.lastNotifCheck = lastNotifCheck; }
+    public java.util.Date getCreatedAt() { return createdAt; }
+    public void setCreatedAt(java.util.Date createdAt) { this.createdAt = createdAt; }
 
     public User() {
     }
@@ -55,4 +67,6 @@ public class User {
     public void setRole(String role) { this.role = role; }
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+    public Department getDepartment() { return department; }
+    public void setDepartment(Department department) { this.department = department; }
 }
