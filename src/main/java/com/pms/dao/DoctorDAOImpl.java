@@ -16,7 +16,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     public List<Appointment> getAppointmentsForDoctor(Long doctorId) {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createQuery("SELECT a FROM Appointment a WHERE a.doctor.id = :did ORDER BY a.dateTime ASC", Appointment.class)
+            return em.createQuery("SELECT a FROM Appointment a WHERE a.doctor.id = :did ORDER BY a.appointmentDate ASC", Appointment.class)
                     .setParameter("did", doctorId)
                     .getResultList();
         } finally {
