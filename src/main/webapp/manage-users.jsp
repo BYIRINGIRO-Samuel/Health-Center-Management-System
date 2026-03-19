@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users | Admin Portal</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body>
     <%
@@ -27,21 +28,13 @@
         <jsp:include page="components/sidebar.jsp" />
 
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Manage Users</h1>
-                    <p class="text-muted">Control user access and information</p>
-                </div>
-                <div class="user-profile">
-                    <div class="avatar">
-                        <%= currentUser.getFullName().substring(0, 1).toUpperCase() %>
-                    </div>
-                    <div class="user-info">
-                        <p style="font-weight: 700; margin: 0;"><%= currentUser.getFullName() %></p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">System Administrator</p>
-                    </div>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Manage Users</h1>
+                <p class="text-muted">Control user access and information</p>
+            </div>
 
             <div class="data-card">
                 <div class="data-header">
@@ -85,6 +78,7 @@
                     </table>
                 </div>
             </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
