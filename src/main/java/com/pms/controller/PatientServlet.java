@@ -79,6 +79,19 @@ public class PatientServlet extends HttpServlet {
             case "paymentHistory":
                 listPaymentHistory(request, response, patient.getId());
                 break;
+            case "notifications":
+                java.util.List<com.pms.model.NotificationItem> notifs = new java.util.ArrayList<>();
+                for(com.pms.model.Appointment a : patientDAO.getAppointmentsByPatientId(patient.getId())) {
+                    notifs.add(new com.pms.model.NotificationItem("appointment", "Appointment " + a.getStatus(), "Appointment with " + a.getDoctor().getFullName(), a.getAppointmentDate(), true, "Appointment", "#dbeafe", "#1e40af"));
+                }
+                for(com.pms.model.Billing b : patientDAO.getBillingsByPatientId(patient.getId())) {
+                    if("Pending".equals(b.getStatus())) {
+                        notifs.add(new com.pms.model.NotificationItem("payment", "Pending Payment", "You have a pending payment of $" + b.getAmount(), b.getBillingDate(), true, "Payment", "#dcfce7", "#15803d"));
+                    }
+                }
+                request.setAttribute("notificationsList", notifs);
+                request.getRequestDispatcher("notifications.jsp").forward(request, response);
+                break;
             default:
                 response.sendRedirect("PatientServlet?action=dashboard");
         }
