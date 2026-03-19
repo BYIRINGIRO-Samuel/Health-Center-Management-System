@@ -47,13 +47,13 @@ public class LoginServlet extends HttpServlet {
     private void directToDashboard(String role, HttpServletResponse response) throws IOException {
         switch (role) {
             case "Admin":
-                response.sendRedirect("admin-dashboard.jsp");
+                response.sendRedirect("AdminServlet?action=dashboard");
                 break;
             case "Doctor":
-                response.sendRedirect("doctor-dashboard.jsp");
+                response.sendRedirect("DoctorServlet?action=dashboard");
                 break;
             case "Receptionist":
-                response.sendRedirect("receptionist-dashboard.jsp");
+                response.sendRedirect("ReceptionistServlet?action=dashboard");
                 break;
             case "Patient":
                 response.sendRedirect("PatientServlet?action=dashboard");
