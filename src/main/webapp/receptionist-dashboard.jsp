@@ -8,21 +8,23 @@
     <title>Reception Dashboard | PMS</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/folder-cards.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         
         <main class="main-content">
-            <header class="top-bar">
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem;">
                 <div class="page-title">
                     <h1>Reception Overview</h1>
                     <p class="text-muted">Welcome back! You have a busy day ahead.</p>
                 </div>
-                <div class="header-actions">
-                    <a href="ReceptionistServlet?action=bookForm" class="btn-primary" style="text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 12px;">Book New Appointment</a>
-                </div>
-            </header>
+                <a href="ReceptionistServlet?action=bookForm" class="btn-primary" style="text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 12px; width:auto;">Book New Appointment</a>
+            </div>
 
         <div class="stats-scroll-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; min-width: 0;">
             <div class="stat-card">
@@ -105,6 +107,7 @@
                 </div>
             </div>
         </section>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
