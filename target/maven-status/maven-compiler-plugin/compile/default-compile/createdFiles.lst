@@ -15,6 +15,7 @@ com\pms\dao\ReceptionistDAO.class
 com\pms\model\Appointment.class
 com\pms\model\Department.class
 com\pms\dao\PatientDAO.class
+com\pms\model\NotificationItem.class
 com\pms\dao\DoctorDAOImpl.class
 com\pms\model\Prescription.class
 com\pms\controller\AdminServlet.class
