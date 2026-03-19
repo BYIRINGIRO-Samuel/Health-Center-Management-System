@@ -10,18 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Process Payment | PMS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Settle Invoice</h1>
-                    <p class="text-muted">Recording a manual payment for an oustanding balance.</p>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Settle Invoice</h1>
+                <p class="text-muted">Recording a manual payment for an outstanding balance.</p>
+            </div>
 
             <div class="data-card" style="max-width: 600px; margin: 2rem auto; padding: 3rem;">
                 <div class="data-header" style="border: none; padding: 0 0 2rem 0; text-align: center;">
@@ -69,6 +71,7 @@
                     </div>
                 </form>
             </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
