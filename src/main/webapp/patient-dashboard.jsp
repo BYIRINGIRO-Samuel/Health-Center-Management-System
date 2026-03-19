@@ -18,6 +18,7 @@
     <title>Patient Dashboard | PMS</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/folder-cards.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body>
     <div class="dashboard-layout">
@@ -68,19 +69,13 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Patient Dashboard</h1>
-                    <p style="color: var(--text-muted);">Welcome back, <%= user.getFullName() %></p>
-                </div>
-                <div class="user-profile">
-                    <div class="avatar"><%= user.getFullName().charAt(0) %></div>
-                    <div class="user-info">
-                        <span style="display: block; font-weight: 600;"><%= user.getFullName() %></span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);"><%= user.getRole() %></span>
-                    </div>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Patient Dashboard</h1>
+                <p style="color: var(--text-muted);">Welcome back, <%= user.getFullName() %></p>
+            </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
@@ -193,6 +188,7 @@
                     </table>
                 </div>
             </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
