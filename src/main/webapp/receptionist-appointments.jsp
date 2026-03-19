@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Appointments | Reception</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Global Appointments List</h1>
-                    <p class="text-muted">Manage patient arrivals and coordinate schedules.</p>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Global Appointments List</h1>
+                <p class="text-muted">Manage patient arrivals and coordinate schedules.</p>
+            </div>
 
         <section class="container-fluid">
             <div class="card shadow-sm border-0">
@@ -69,6 +71,7 @@
                 </div>
             </div>
         </section>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
