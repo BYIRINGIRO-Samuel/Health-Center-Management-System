@@ -19,8 +19,7 @@
 
         List<User> users = (List<User>) request.getAttribute("users");
         if (users == null) {
-            response.sendRedirect("AdminServlet?action=listDoctors");
-            return;
+            users = java.util.Collections.emptyList();
         }
     %>
 
