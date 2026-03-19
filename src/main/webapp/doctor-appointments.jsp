@@ -53,7 +53,7 @@
                             <% } else { %>
                                 <% for (Appointment a : appointments) { %>
                                     <tr>
-                                        <td><%= a.getDateTime() %></td>
+                                        <td><%= a.getAppointmentDate() %></td>
                                         <td style="font-weight: 600;"><%= a.getPatient().getFullName() %></td>
                                         <td><%= a.getReason() %></td>
                                         <td><a href="DoctorServlet?action=viewHistory&patientId=<%= a.getPatient().getId() %>" class="btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; text-decoration: none;">Treat Patient</a></td>
