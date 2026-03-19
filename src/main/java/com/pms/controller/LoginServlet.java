@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("receptionist-dashboard.jsp");
                 break;
             case "Patient":
-                response.sendRedirect("patient-dashboard.jsp");
+                response.sendRedirect("PatientServlet?action=dashboard");
                 break;
             default:
                 response.sendRedirect("index.jsp");
