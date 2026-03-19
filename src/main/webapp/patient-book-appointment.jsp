@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment | PMS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body>
     <div class="dashboard-layout">
@@ -64,12 +65,13 @@
         </aside>
 
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Book Appointment</h1>
-                    <p style="color: var(--text-muted);">Schedule a consultation with our doctors</p>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Book Appointment</h1>
+                <p style="color: var(--text-muted);">Schedule a consultation with our doctors</p>
+            </div>
 
             <div class="auth-wrapper" style="max-width: 800px; height: auto; margin: 0 auto; display: block; padding: 2rem;">
                 <div class="split-right" style="padding: 0;">
@@ -103,6 +105,7 @@
                     </form>
                 </div>
             </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
