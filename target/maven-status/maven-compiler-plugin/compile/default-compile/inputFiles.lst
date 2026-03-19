@@ -17,6 +17,7 @@ F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\controller\AdminServlet.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\dao\DoctorDAO.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\dao\ReceptionistDAO.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\dao\UserDAOImpl.java
+F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\model\NotificationItem.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\dao\PatientDAOImpl.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\controller\DoctorServlet.java
 F:\JAVA-SERVLETS\LMS\src\main\java\com\pms\model\Appointment.java
