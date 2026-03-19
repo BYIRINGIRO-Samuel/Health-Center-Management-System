@@ -17,6 +17,11 @@
             return;
         }
     %>
+<%@ page import="com.pms.model.Billing, java.util.List" %>
+    <%
+        List<Billing> billings = (List<Billing>) request.getAttribute("billings");
+        Double totalRevenue = (Double) request.getAttribute("totalRevenue");
+    %>
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         <main class="main-content">
@@ -27,24 +32,28 @@
                 </div>
             </header>
 
-            <div class="stats-grid">
-                <div class="stat-card" style="background: #f0fdf4;">
+            <div class="stats-scroll-container">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255,255,255,0.2); color: white;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
                     <div class="stat-info">
-                        <h3>Total Earnings</h3>
-                        <p>$12,450.00</p>
-                        <span style="font-size: 0.75rem; color: #22c55e;">+12.5% from last month</span>
+                        <h3>Total Revenue</h3>
+                        <p>$<%= String.format("%.2f", totalRevenue != null ? totalRevenue : 0.0) %></p>
                     </div>
                 </div>
-                <div class="stat-card" style="background: #fffbeb;">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255,255,255,0.2); color: white;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
                     <div class="stat-info">
-                        <h3>Pending Invoices</h3>
-                        <p>18</p>
-                        <span style="font-size: 0.75rem; color: #d97706;">Needs attention</span>
+                        <h3>Total Invoices</h3>
+                        <p><%= billings != null ? billings.size() : 0 %></p>
                     </div>
                 </div>
             </div>
 
-            <div class="data-card" style="margin-top: 2rem;">
+            <div class="data-card" style="margin-top: 1rem;">
                 <div class="data-header">
                     <h2 style="font-weight: 700;">Recent Transactions</h2>
                 </div>
@@ -52,28 +61,31 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Txn ID</th>
+                                <th>#ID</th>
                                 <th>Patient</th>
-                                <th>Department</th>
+                                <th>Billing Date</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                                if (billings != null && !billings.isEmpty()) {
+                                    for (Billing b : billings) {
+                            %>
                             <tr>
-                                <td>#TXN-8822</td>
-                                <td>Sarah Jenkins</td>
-                                <td>Cardiology</td>
-                                <td>$450.00</td>
-                                <td><span class="role-badge badge-Doctor">Success</span></td>
+                                <td>#<%= b.getId() %></td>
+                                <td style="font-weight: 600;"><%= b.getPatient().getFullName() %></td>
+                                <td><%= b.getBillingDate() %></td>
+                                <td style="color: var(--teal-dark); font-weight: 700;">$<%= String.format("%.2f", b.getAmount()) %></td>
+                                <td><span class="role-badge badge-Admin">Paid</span></td>
                             </tr>
-                            <tr>
-                                <td>#TXN-8821</td>
-                                <td>Michael Bay</td>
-                                <td>Dental Care</td>
-                                <td>$120.00</td>
-                                <td><span class="role-badge badge-Patient">Pending</span></td>
-                            </tr>
+                            <%
+                                    }
+                                } else {
+                            %>
+                            <tr><td colspan="5" style="text-align: center; padding: 3rem;">No transactions found.</td></tr>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
