@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment | PMS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Schedule Appointment</h1>
-                    <p class="text-muted">Connect patients with their preferred medical specialists.</p>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Schedule Appointment</h1>
+                <p class="text-muted">Connect patients with their preferred medical specialists.</p>
+            </div>
 
         <div class="patients-section" style="padding-top: 2rem;">
             <div class="data-card" style="max-width: 600px; margin: 0 auto; padding: 3rem;">
@@ -70,6 +72,7 @@
                 </form>
             </div>
         </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
