@@ -73,7 +73,7 @@
                             <% } else { %>
                                 <% for (Appointment a : appointments) { %>
                                     <tr>
-                                        <td><%= a.getDateTime().toLocalTime() %></td>
+                                        <td><%= a.getAppointmentDate() %></td>
                                         <td style="font-weight: 600;"><%= a.getPatient().getFullName() %></td>
                                         <td><%= a.getReason() %></td>
                                         <td><span class="role-badge badge-Patient"><%= a.getStatus() %></span></td>
