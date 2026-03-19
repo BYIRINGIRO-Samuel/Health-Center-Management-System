@@ -1,4 +1,4 @@
-%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.pms.model.User, com.pms.model.Appointment, com.pms.model.Prescription, com.pms.model.Billing, java.util.List" %>
 <%
     User user = (User) session.getAttribute("user");
@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard | PMS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/folder-cards.css">
 </head>
 <body>
     <div class="dashboard-layout">
