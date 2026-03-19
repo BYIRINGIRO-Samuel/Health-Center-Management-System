@@ -1,0 +1,317 @@
+/* ============================================================
+   PORTAL TOP BAR  –  PMS Health
+   ============================================================ */
+
+/* ── Layout: push main content below topbar ─────────────── */
+.main-content {
+    padding-top: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-inner-content {
+    padding: 2.5rem;
+    flex: 1;
+}
+
+/* ── Top bar container ───────────────────────────────────── */
+.portal-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    height: 68px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+    gap: 1rem;
+}
+
+/* ── Left side ───────────────────────────────────────────── */
+.topbar-left { display: flex; align-items: center; min-width: 0; }
+
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.topbar-brand-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--teal-gradient-start), var(--teal-gradient-end));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26, 191, 154, 0.3);
+}
+.topbar-brand-icon svg { width: 20px; height: 20px; stroke: white; }
+
+.topbar-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.topbar-page-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
+.topbar-breadcrumb {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+}
+
+/* ── Right side ──────────────────────────────────────────── */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ── Notification bell ───────────────────────────────────── */
+.topbar-icon-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg-color);
+    border: 1.5px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.22s ease;
+    cursor: pointer;
+}
+.topbar-icon-btn svg { width: 18px; height: 18px; }
+
+.topbar-icon-btn:hover {
+    background: var(--teal-soft);
+    border-color: var(--teal-primary);
+    color: var(--teal-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26, 191, 154, 0.18);
+}
+
+/* Badge on bell */
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: white;
+    border-radius: 9px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    line-height: 1;
+    animation: notif-pulse 2s infinite;
+}
+
+@keyframes notif-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244,63,94,0.4); }
+    50%       { box-shadow: 0 0 0 6px rgba(244,63,94,0); }
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.topbar-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border-color);
+    margin: 0 0.25rem;
+}
+
+/* ── Profile chip ────────────────────────────────────────── */
+.topbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.22s ease;
+    position: relative;
+    user-select: none;
+}
+
+.topbar-profile:hover,
+.topbar-profile.active {
+    border-color: var(--teal-primary);
+    background: var(--teal-soft);
+    box-shadow: 0 4px 16px rgba(26, 191, 154, 0.12);
+}
+
+/* Avatar circle */
+.topbar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-gradient-start), var(--teal-gradient-end));
+    color: white;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+.topbar-avatar-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--teal-primary);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.topbar-profile:hover .topbar-avatar-ring,
+.topbar-profile.active .topbar-avatar-ring { opacity: 1; }
+
+/* Name & role */
+.topbar-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.topbar-user-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.topbar-user-role {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    margin-top: 1px;
+    width: fit-content;
+}
+
+/* Role-specific badge colors */
+.topbar-role-Admin        { background: #fee2e2; color: #991b1b; }
+.topbar-role-Doctor       { background: #e0f2fe; color: #075985; }
+.topbar-role-Receptionist { background: #fef3c7; color: #92400e; }
+.topbar-role-Patient      { background: var(--teal-soft); color: var(--teal-dark); }
+
+/* Chevron */
+.topbar-chevron {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+    transition: transform 0.22s ease;
+}
+.topbar-profile.active .topbar-chevron { transform: rotate(180deg); }
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.topbar-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 220px;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    padding: 0.5rem;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    pointer-events: none;
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 200;
+}
+.topbar-dropdown.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.topbar-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.75rem 0.5rem;
+}
+.topbar-drop-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-gradient-start), var(--teal-gradient-end));
+    color: white; font-weight: 800; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.topbar-drop-name {
+    font-size: 0.875rem; font-weight: 700; color: var(--text-dark);
+    margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
+}
+.topbar-drop-role { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+
+.topbar-drop-divider {
+    border: none; border-top: 1px solid var(--border-color); margin: 0.35rem 0.5rem;
+}
+
+.topbar-drop-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 10px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.18s ease;
+}
+.topbar-drop-item svg { width: 16px; height: 16px; color: var(--text-muted); flex-shrink: 0; }
+.topbar-drop-item:hover {
+    background: var(--teal-soft);
+    color: var(--teal-primary);
+}
+.topbar-drop-item:hover svg { color: var(--teal-primary); }
+
+.topbar-drop-logout { color: #ef4444; }
+.topbar-drop-logout svg { color: #ef4444; }
+.topbar-drop-logout:hover { background: #fef2f2; color: #dc2626; }
+.topbar-drop-logout:hover svg { color: #dc2626; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .portal-topbar { padding: 0 1rem; height: 60px; }
+    .topbar-brand-text { display: none; }
+    .topbar-user-info  { display: none; }
+    .topbar-chevron    { display: none; }
+    .topbar-profile    { padding: 0.35rem; }
+    .main-inner-content { padding: 1.5rem; }
+}
