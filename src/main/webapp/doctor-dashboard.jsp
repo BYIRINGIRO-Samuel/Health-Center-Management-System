@@ -10,6 +10,7 @@
     <title>Doctor Dashboard | PMS Health</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/folder-cards.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body>
     <%
@@ -30,19 +31,13 @@
         <jsp:include page="components/sidebar.jsp" />
 
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Clinic Overview</h1>
-                    <p class="text-muted">Welcome back, Dr. <%= currentUser.getFullName() %></p>
-                </div>
-                <div class="user-profile">
-                    <div class="avatar">D</div>
-                    <div class="user-info">
-                        <p style="font-weight: 600;"><%= currentUser.getFullName() %></p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">Physician</p>
-                    </div>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Clinic Overview</h1>
+                <p class="text-muted">Welcome back, Dr. <%= currentUser.getFullName() %></p>
+            </div>
 
             <div class="stats-scroll-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; min-width: 0;">
                 <div class="stat-card">
@@ -92,6 +87,7 @@
                     </table>
                 </div>
             </div>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
