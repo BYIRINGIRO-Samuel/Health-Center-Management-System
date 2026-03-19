@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billing & Invoices | Reception</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/topbar.css">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
         <jsp:include page="components/sidebar.jsp" />
         
         <main class="main-content">
-            <header class="top-bar">
-                <div class="page-title">
-                    <h1>Invoices & Billing</h1>
-                    <p class="text-muted">Track patient payments and manage outstanding balances.</p>
-                </div>
-            </header>
+            <jsp:include page="components/topbar.jsp" />
+
+            <div class="main-inner-content">
+            <div class="page-title" style="margin-bottom:2rem;">
+                <h1>Invoices & Billing</h1>
+                <p class="text-muted">Track patient payments and manage outstanding balances.</p>
+            </div>
 
         <section class="billing-section">
             <!-- Add Billing Form (Simple) -->
@@ -108,6 +110,7 @@
                 </div>
             </div>
         </section>
+            </div><!-- /.main-inner-content -->
         </main>
     </div>
 </body>
