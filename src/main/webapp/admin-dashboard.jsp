@@ -70,8 +70,8 @@
 
             <div class="data-card">
                 <div class="data-header">
-                    <h2 style="font-weight: 700; margin: 0;">Recent System Activity</h2>
-                    <a href="AdminServlet?action=manageUsers" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem; text-decoration: none;">View All Users</a>
+                    <h2 style="font-weight: 700; margin: 0; white-space: nowrap;">Recent System Activity</h2>
+                    <a href="AdminServlet?action=manageUsers" class="btn-primary" style="width: auto; margin-top: 0; padding: 0.5rem 1.5rem; font-size: 0.8rem; text-decoration: none;">View All Users</a>
                 </div>
                 <div class="table-responsive">
                     <table>
