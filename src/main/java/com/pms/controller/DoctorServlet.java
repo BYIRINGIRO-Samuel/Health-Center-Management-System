@@ -110,7 +110,26 @@ public class DoctorServlet extends HttpServlet {
             if (phone != null) doctor.setPhone(phone);
             userDAO.updateUser(doctor);
             session.setAttribute("user", doctor);
-            response.sendRedirect("profile.jsp?status=success");
+            response.sendRedirect("settings.jsp?status=success");
+        } else if ("changePassword".equals(action)) {
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String confirmPassword = request.getParameter("confirmPassword");
+
+            if (!doctor.getPassword().equals(currentPassword)) {
+                response.sendRedirect("settings.jsp?error=Current password incorrect");
+                return;
+            }
+
+            if (!newPassword.equals(confirmPassword)) {
+                response.sendRedirect("settings.jsp?error=New passwords do not match");
+                return;
+            }
+
+            doctor.setPassword(newPassword);
+            userDAO.updateUser(doctor);
+            session.setAttribute("user", doctor);
+            response.sendRedirect("settings.jsp?status=success");
         }
     }
 
