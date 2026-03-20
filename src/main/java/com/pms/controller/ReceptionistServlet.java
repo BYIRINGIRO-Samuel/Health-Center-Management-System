@@ -99,7 +99,26 @@ public class ReceptionistServlet extends HttpServlet {
             if (phone != null) receptionist.setPhone(phone);
             userDAO.updateUser(receptionist);
             session.setAttribute("user", receptionist);
-            response.sendRedirect("profile.jsp?status=success");
+            response.sendRedirect("settings.jsp?status=success");
+        } else if ("changePassword".equals(action)) {
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String confirmPassword = request.getParameter("confirmPassword");
+
+            if (!receptionist.getPassword().equals(currentPassword)) {
+                response.sendRedirect("settings.jsp?error=Current password incorrect");
+                return;
+            }
+
+            if (!newPassword.equals(confirmPassword)) {
+                response.sendRedirect("settings.jsp?error=New passwords do not match");
+                return;
+            }
+
+            receptionist.setPassword(newPassword);
+            userDAO.updateUser(receptionist);
+            session.setAttribute("user", receptionist);
+            response.sendRedirect("settings.jsp?status=success");
         }
     }
 
