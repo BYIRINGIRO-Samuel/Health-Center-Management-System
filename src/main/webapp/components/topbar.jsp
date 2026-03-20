@@ -61,19 +61,15 @@
     }
 
     // Build profile URL based on role
-    String profileUrl = "profile.jsp";
+    String profileUrl = "settings.jsp";
     String notifUrl   = "NotificationServlet?action=list";
     if ("Patient".equals(tbRole)) {
-        profileUrl = "PatientServlet?action=profile";
         notifUrl   = "PatientServlet?action=notifications";
     } else if ("Doctor".equals(tbRole)) {
-        profileUrl = "profile.jsp";
         notifUrl   = "DoctorServlet?action=notifications";
     } else if ("Admin".equals(tbRole)) {
-        profileUrl = "profile.jsp";
         notifUrl   = "AdminServlet?action=notifications";
     } else if ("Receptionist".equals(tbRole)) {
-        profileUrl = "profile.jsp";
         notifUrl   = "ReceptionistServlet?action=notifications";
     }
 
@@ -147,8 +143,8 @@
                 </div>
                 <hr class="topbar-drop-divider">
                 <a href="<%= profileUrl %>" class="topbar-drop-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    My Profile
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Account Settings
                 </a>
                 <a href="<%= notifUrl %>" class="topbar-drop-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
