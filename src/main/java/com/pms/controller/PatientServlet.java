@@ -167,12 +167,35 @@ public class PatientServlet extends HttpServlet {
         request.getRequestDispatcher("patient-payment-history.jsp").forward(request, response);
     }
 
+    private void changePassword(HttpServletRequest request, HttpServletResponse response, User patient) throws IOException {
+        String currentPassword = request.getParameter("currentPassword");
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+
+        // In a real application, you would hash passwords and compare hashes.
+        // For this example, we're doing a direct string comparison.
+        if (!patient.getPassword().equals(currentPassword)) {
+            response.sendRedirect("settings.jsp?error=Current password incorrect");
+            return;
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            response.sendRedirect("settings.jsp?error=New passwords do not match");
+            return;
+        }
+
+        // In a real application, you would hash the new password before setting it.
+        patient.setPassword(newPassword);
+        userDAO.updateUser(patient); // Assuming userDAO has an updateUser method that handles password updates
+        response.sendRedirect("settings.jsp?status=passwordUpdated");
+    }
+
     private void updateProfile(HttpServletRequest request, HttpServletResponse response, User currentPatient) throws IOException {
         currentPatient.setFullName(request.getParameter("fullName"));
         currentPatient.setEmail(request.getParameter("email"));
         currentPatient.setPhone(request.getParameter("phone"));
         patientDAO.updateProfile(currentPatient);
-        response.sendRedirect("PatientServlet?action=profile&status=success");
+        response.sendRedirect("settings.jsp?status=profileUpdated");
     }
 
     private void bookAppointment(HttpServletRequest request, HttpServletResponse response, User patient) throws IOException {
