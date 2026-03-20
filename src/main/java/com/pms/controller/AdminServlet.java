@@ -164,7 +164,26 @@ public class AdminServlet extends HttpServlet {
             
             new com.pms.dao.UserDAOImpl().updateUser(currentUser);
             session.setAttribute("user", currentUser);
-            response.sendRedirect("profile.jsp?status=success");
+            response.sendRedirect("settings.jsp?status=success");
+        } else if ("changePassword".equals(action)) {
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String confirmPassword = request.getParameter("confirmPassword");
+
+            if (!currentUser.getPassword().equals(currentPassword)) {
+                response.sendRedirect("settings.jsp?error=Current password incorrect");
+                return;
+            }
+
+            if (!newPassword.equals(confirmPassword)) {
+                response.sendRedirect("settings.jsp?error=New passwords do not match");
+                return;
+            }
+
+            currentUser.setPassword(newPassword);
+            new com.pms.dao.UserDAOImpl().updateUser(currentUser);
+            session.setAttribute("user", currentUser);
+            response.sendRedirect("settings.jsp?status=success");
         }
     }
 }
