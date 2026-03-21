@@ -7,7 +7,7 @@
 .stat-card {
   background: var(--folder-green) !important;
   padding: 1.5rem !important;
-  border-radius: 0 20px 20px 20px !important;
+  border-radius: 0 8px 8px 8px !important; /* Reduced from 20px */
   box-shadow: 0 10px 30px -5px rgba(26, 191, 154, 0.3) !important;
   display: flex !important;
   flex-direction: column !important;
@@ -28,7 +28,7 @@
   width: 90px;
   height: var(--folder-tab-height);
   background: var(--folder-green);
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px 4px 0 0; /* Reduced from 8px */
 }
 
 .stat-card:hover {
@@ -45,7 +45,7 @@
   height: 40px !important;
   background: rgba(255, 255, 255, 0.2) !important;
   color: white !important;
-  border-radius: 10px !important;
+  border-radius: 4px !important; /* Reduced from 10px */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
