@@ -45,7 +45,7 @@ body {
 
 .auth-wrapper {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.08);
   display: flex;
   width: 100%;
@@ -62,7 +62,7 @@ body {
   flex: 1;
   background: linear-gradient(135deg, var(--teal-gradient-start) 0%, var(--teal-gradient-end) 100%);
   color: var(--text-dark);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -211,7 +211,7 @@ body {
 .btn-sm {
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
-  border-radius: 8px;
+  border-radius: 4px; /* Reduced from 8px */
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -369,7 +369,7 @@ select.form-control {
   background: var(--teal-primary);
   color: var(--white);
   border: none;
-  border-radius: 8px;
+  border-radius: 4px; /* Reduced from 8px */
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -610,7 +610,7 @@ select.form-control {
 .stat-card {
   background: var(--white);
   padding: 1.5rem;
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
@@ -641,7 +641,7 @@ select.form-control {
 /* Table Container (for manage users pages) */
 .data-card {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
@@ -683,7 +683,7 @@ td {
 
 .role-badge {
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 4px; /* Reduced from 20px */
   font-size: 0.75rem;
   font-weight: 600;
 }
